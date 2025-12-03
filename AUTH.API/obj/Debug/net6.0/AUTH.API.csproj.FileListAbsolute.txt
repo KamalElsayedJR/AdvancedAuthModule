@@ -278,4 +278,3 @@ D:\Dev\AdvancAuth\AUTH.API\obj\Debug\net6.0\refint\AUTH.API.dll
 D:\Dev\AdvancAuth\AUTH.API\obj\Debug\net6.0\AUTH.API.pdb
 D:\Dev\AdvancAuth\AUTH.API\obj\Debug\net6.0\AUTH.API.genruntimeconfig.cache
 D:\Dev\AdvancAuth\AUTH.API\obj\Debug\net6.0\ref\AUTH.API.dll
-D:\MyGitHub\AdvancAuth\AUTH.API\obj\Debug\net6.0\AUTH.API.sourcelink.json

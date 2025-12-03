@@ -19,7 +19,7 @@ namespace CORE.DTOs
         [Required(ErrorMessage = "Password Is Required")]
         [MinLength(8, ErrorMessage = "Password Must Be At Least 8 Characters Long")]
         [DataType(DataType.Password)]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._-])[A-Za-z\\d@$!%*?&._-]{8,}$",ErrorMessage = " Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.")]
         public string Password { get; set; }
-
     }
 }

@@ -28,7 +28,8 @@ namespace SERVICES
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim("EmailVerifiy",user.IsVerified.ToString()),
-                new Claim("DisplayName",user.FirstName)
+                new Claim("FirstName",user.FirstName),
+                new Claim("LastName",user.LastName),
             };
             var Authkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTConfig:SecretKey"]));
             var Token = new JwtSecurityToken(
@@ -44,6 +45,7 @@ namespace SERVICES
         {
             return Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
         }
+
 
     }
 }

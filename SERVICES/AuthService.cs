@@ -105,7 +105,7 @@ namespace SERVICES
             var refreshTokenEntity = new RefreshToken()
             {
                 Token = newRefreshToken,
-                ExpiresAt = DateTime.UtcNow.AddDays(7),
+                ExpiresAt = DateTimeOffset.UtcNow.AddDays(7),
                 UserId = User.Id
             };
             await _unitOfWork.GenericRepo<RefreshToken>().AddAsync(refreshTokenEntity);
@@ -121,7 +121,7 @@ namespace SERVICES
             ReturnedResponse.RefreshToken = newRefreshToken;
             return ReturnedResponse;
         }
-        public async Task<bool> LogOut(string token)
+        public async Task<bool> LogOutAsync(string token)
         {
             var rt = (await _unitOfWork.GenericRepo<RefreshToken>().FindAsync(rt => rt.Token == token)).FirstOrDefault();
             if (rt is null) return false;
@@ -150,7 +150,69 @@ namespace SERVICES
             var result = await _unitOfWork.SaveChangesAsync();
             return result > 0;
         }
-        
 
+        public async Task<AuthBaseResponseDto> UpdateProfileAsync(UpdateUserDto dto)
+        {
+            var user = await _unitOfWork.IUserRepository.GetUserByEmailAsync(dto.Email);
+            if (user is null) return new AuthBaseResponseDto(false,"Invalid Email Please Loign Again");
+            _mapper.Map(dto,user);
+            _unitOfWork.GenericRepo<User>().Update(user);
+            var newaccesToken = await _tokenService.CreateAccessTokenAsync(user);
+            var newrefreshToken = _tokenService.CreateRefreshToken();
+            var Oldtoken = await _unitOfWork.GenericRepo<RefreshToken>().FindAsync(t=>t.UserId == user.Id);
+            _unitOfWork.GenericRepo<RefreshToken>().DeleteRange(Oldtoken);
+            var refreshTokenEntity = new RefreshToken()
+            {
+                Token = newrefreshToken,
+                ExpiresAt = DateTimeOffset.UtcNow.AddDays(7),
+                UserId = user.Id
+            };
+            await _unitOfWork.GenericRepo<RefreshToken>().AddAsync(refreshTokenEntity);
+            var rResult = await _unitOfWork.SaveChangesAsync();
+            if (rResult <= 0) return new AuthBaseResponseDto(false ,"Error During Update User");
+            var ReturnedResponse = _mapper.Map<User, AuthBaseResponseDto>(user);
+            ReturnedResponse.Success = true;
+            ReturnedResponse.Message = "User Profile Updated Successfully";
+            ReturnedResponse.AccessToken = newaccesToken;
+            ReturnedResponse.RefreshToken = newrefreshToken;
+            return ReturnedResponse;
+        }
+        public async Task<bool> ChangePassword(ChangePasswordDto dto,string Email)
+        {
+            var usr = await _unitOfWork.IUserRepository.GetUserByEmailAsync(Email);
+            if (usr is null) return false;
+            if(!VerifyHashedPassword(usr.HashPassword ,dto.CurrentPassword)) return false;
+            if (dto.CurrentPassword == dto.Password) return false;
+            usr.HashPassword = HashPassowrdHandler(dto.Password);
+            _unitOfWork.GenericRepo<User>().Update(usr);
+            var Result = await _unitOfWork.SaveChangesAsync();
+            return Result > 0;
+
+        }
+        //public async Task<AuthBaseResponseDto?> RefreshTokenWithPrinciple(string token)
+        //{
+        //    var principal = _tokenService.GetUserPrincipal(token);
+        //    var s = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        //    if (s != null) return new AuthBaseResponseDto(false,"invalid token");
+        //    var usr = await _unitOfWork.IUserRepository.GetUserByEmailAsync(s);
+        //    if (usr is null) return new AuthBaseResponseDto(false, "Please LoginAgain");
+        //    var accesstoken = await _tokenService.CreateAccessTokenAsync(usr);
+        //    var refreshtoken = _tokenService.CreateRefreshToken();
+        //    var rtEntitiy = new RefreshToken()
+        //    {
+        //        Token = refreshtoken,
+        //        ExpiresAt = DateTimeOffset.UtcNow.AddDays(7),
+        //        UserId = usr.Id,
+        //    };
+        //    await _unitOfWork.GenericRepo<RefreshToken>().AddAsync(rtEntitiy);
+        //    var Result = await _unitOfWork.SaveChangesAsync();
+        //    if (Result <= 0) return null;
+        //    var ReturnedResponse = _mapper.Map<User, AuthBaseResponseDto>(usr);
+        //    ReturnedResponse.Success = true;
+        //    ReturnedResponse.Message = "Access Token Generated Successfully";
+        //    ReturnedResponse.AccessToken = accesstoken;
+        //    ReturnedResponse.RefreshToken = refreshtoken;
+        //    return ReturnedResponse;
+        //}
     }
 }

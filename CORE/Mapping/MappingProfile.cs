@@ -16,6 +16,7 @@ namespace CORE.Mapping
             //CreateMap<Source, Destination>();
             CreateMap<UserRegisterDto,User>();
             CreateMap<User, AuthBaseResponseDto>();
+            CreateMap<UpdateUserDto, User>().ReverseMap();
         }
     }
 }

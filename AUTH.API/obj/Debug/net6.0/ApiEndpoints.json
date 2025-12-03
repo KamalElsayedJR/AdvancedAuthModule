@@ -1,6 +1,32 @@
 [
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "ChanagePassword",
+    "RelativePath": "Auth/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "CORE.DTOs.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
     "Method": "ForgetPassword",
     "RelativePath": "Auth/ForgetPassword",
     "HttpMethod": "POST",
@@ -13,6 +39,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "GetMyToken",
+    "RelativePath": "Auth/gettoken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -56,6 +92,52 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "Profile",
+    "RelativePath": "Auth/Me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "AUTH.API.Response.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "Profile",
+    "RelativePath": "Auth/Me",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "CORE.DTOs.UpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CORE.DTOs.AuthBaseResponseDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",
@@ -176,16 +258,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "AUTH.API.Controllers.AuthController",
-    "Method": "Test",
-    "RelativePath": "Auth/Test",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",

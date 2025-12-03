@@ -1,8 +1,8 @@
 ﻿namespace AUTH.API.Request
 {
-    public class ROtpVerifiyDto
+    public class OtpVeryfiyDto
     {
         public string Email { get; set; }
-        public string Opt { get; set; }
+        public string otp { get; set; }
     }
 }
