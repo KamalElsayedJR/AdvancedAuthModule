@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "ForgetPassword",
+    "RelativePath": "Auth/ForgetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "AUTH.API.Request.REmailDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "Auth/Login",
     "HttpMethod": "POST",
@@ -40,6 +56,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "OtpVerify",
+    "RelativePath": "Auth/OtpVerify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "AUTH.API.Request.OtpVeryfiyDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",
@@ -92,6 +134,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "AUTH.API.Controllers.AuthController",
+    "Method": "ResetPassword",
+    "RelativePath": "Auth/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "AUTH.API.Request.RResetPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "AUTH.API.Controllers.AuthController",

@@ -14,5 +14,7 @@ namespace CORE.Interfaces
         Task<bool> LogOut(string token);
         string HashPassowrdHandler(string Password);
         bool VerifyHashedPassword(string hashedPassword, string providedPassword);
+        Task<AuthBaseResponseDto> ForgetPasswordAsync(string Email);
+        Task<bool> ResetPassword(string email, string newpassword);
     }
 }

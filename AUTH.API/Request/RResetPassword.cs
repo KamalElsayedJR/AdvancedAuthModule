@@ -1,8 +1,8 @@
 ﻿namespace AUTH.API.Request
 {
-    public class ROtpVerifiyDto
+    public class RResetPassword
     {
         public string Email { get; set; }
-        public string Otp { get; set; }
+        public string NewPassword { get; set; }
     }
 }

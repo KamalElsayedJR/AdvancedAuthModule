@@ -59,10 +59,27 @@ namespace AUTH.API.Controllers
         [HttpPost("VerifiyEmail")]
         public async Task<ActionResult<AuthBaseResponseDto>> VerifiyEmail(ROtpVerifiyDto dto)
         {
-            var Result = await _emailVerification.OTPVerifiyAsync(dto.Email, dto.Opt);
+            var Result = await _emailVerification.OTPEmailVerifiyAsync(dto.Email, dto.Otp);
             if (Result) return Ok(new AuthBaseResponseDto(true,"Email Verified Successfully"));
             return BadRequest(new AuthBaseResponseDto(false,"Invalid OTP or OTP Expired"));
         }
+        [HttpPost("ForgetPassword")]
+        public async Task<ActionResult> ForgetPassword(REmailDto dto)
+        {
+            var response = await _authService.ForgetPasswordAsync(dto.Email);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+        [HttpPost("ResetPassword")]
+        public async Task<ActionResult> ResetPassword(RResetPassword dto)
+        {
+            var respnse = await _authService.ResetPassword(dto.Email, dto.NewPassword);
+            if (!respnse) return BadRequest(new { Success = false, Message = "Error During Reseting Password" });
+            return Ok(new { Success = true, Message = "Password Reseted Successfully" });
+        }
+        [HttpPost("OtpVerify")]
+        public async Task<ActionResult<bool>> OtpVerify(ROtpVerifiyDto dto)
+        => await _emailVerification.OtpVerifyAsync(dto.Otp,dto.Email);
 
 
         [Authorize]

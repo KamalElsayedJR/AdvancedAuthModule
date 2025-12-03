@@ -10,6 +10,7 @@ namespace CORE.Interfaces
     public interface IEmailVerificationService
     {
         Task<AuthBaseResponseDto> GenerateOTPAsync(string email);
-        Task<bool> OTPVerifiyAsync(string email,string opt);
+        Task<bool> OTPEmailVerifiyAsync(string email,string opt);
+        Task<bool> OtpVerifyAsync(string otp,string email);
     }
 }

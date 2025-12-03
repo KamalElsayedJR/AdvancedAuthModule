@@ -123,11 +123,34 @@ namespace SERVICES
         }
         public async Task<bool> LogOut(string token)
         {
-            var rrt = (await _unitOfWork.GenericRepo<RefreshToken>().FindAsync(rt => rt.Token == token)).FirstOrDefault();
-            if (rrt is null) return false;
-            var alltokenforuser = _unitOfWork.GenericRepo<RefreshToken>().FindAsync(rt => rt.UserId == rrt.UserId);
-            _unitOfWork.GenericRepo<RefreshToken>().DeleteRange(await alltokenforuser);
+            var rt = (await _unitOfWork.GenericRepo<RefreshToken>().FindAsync(rt => rt.Token == token)).FirstOrDefault();
+            if (rt is null) return false;
+            //var alltokenforuser = _unitOfWork.GenericRepo<RefreshToken>().FindAsync(rt => rt.UserId == rrt.UserId);
+            //_unitOfWork.GenericRepo<RefreshToken>().DeleteRange(await alltokenforuser);
+            _unitOfWork.GenericRepo<RefreshToken>().Delete(rt);
             return await _unitOfWork.SaveChangesAsync() > 0;
         }
+        public async Task<AuthBaseResponseDto> ForgetPasswordAsync(string email)
+        {
+            var User = await _unitOfWork.IUserRepository.GetUserByEmailAsync(email);
+            if (User is null) return new AuthBaseResponseDto(false, "EmailNotFound");
+            return await _emailVerification.GenerateOTPAsync(email);
+        }
+        public async Task<bool> ResetPassword(string email,string newpassword)
+        {
+            var user = await _unitOfWork.IUserRepository.GetUserByEmailAsync(email);
+            var UserOtp = (await _unitOfWork.GenericRepo<OTP>().FindAsync(otp => otp.Email == email)).FirstOrDefault();
+            if (user is null ||UserOtp is null || !UserOtp.IsUsed) return false;
+            user.HashPassword = HashPassowrdHandler(newpassword);
+            var oldotps = (await _unitOfWork.GenericRepo<OTP>().FindAsync(e => e.Email == email)).ToList();
+            if (oldotps.Any())
+            {
+                _unitOfWork.GenericRepo<OTP>().DeleteRange(oldotps);
+            }
+            var result = await _unitOfWork.SaveChangesAsync();
+            return result > 0;
+        }
+        
+
     }
 }

@@ -22,3 +22,16 @@ D:\MyGitHub\AdvancAuth\CORE\obj\Debug\net6.0\CORE.dll
 D:\MyGitHub\AdvancAuth\CORE\obj\Debug\net6.0\refint\CORE.dll
 D:\MyGitHub\AdvancAuth\CORE\obj\Debug\net6.0\CORE.pdb
 D:\MyGitHub\AdvancAuth\CORE\obj\Debug\net6.0\ref\CORE.dll
+D:\Dev\AdvancAuth\CORE\bin\Debug\net6.0\CORE.deps.json
+D:\Dev\AdvancAuth\CORE\bin\Debug\net6.0\CORE.dll
+D:\Dev\AdvancAuth\CORE\bin\Debug\net6.0\CORE.pdb
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.csproj.AssemblyReference.cache
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.AssemblyInfoInputs.cache
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.AssemblyInfo.cs
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.csproj.CoreCompileInputs.cache
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.dll
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\refint\CORE.dll
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\CORE.pdb
+D:\Dev\AdvancAuth\CORE\obj\Debug\net6.0\ref\CORE.dll
+D:\MyGitHub\AdvancAuth\CORE\obj\Debug\net6.0\CORE.sourcelink.json

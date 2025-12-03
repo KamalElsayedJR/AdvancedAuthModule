@@ -27,7 +27,8 @@ namespace SERVICES
             {
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(ClaimTypes.Email,user.Email),
-                new Claim("EmailVerifiy",user.IsVerified.ToString())
+                new Claim("EmailVerifiy",user.IsVerified.ToString()),
+                new Claim("DisplayName",user.FirstName)
             };
             var Authkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTConfig:SecretKey"]));
             var Token = new JwtSecurityToken(
