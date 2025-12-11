@@ -43,4 +43,3 @@ D:\Dev\AdvancAuth\REPOSITORY\obj\Debug\net6.0\REPOSITORY.dll
 D:\Dev\AdvancAuth\REPOSITORY\obj\Debug\net6.0\refint\REPOSITORY.dll
 D:\Dev\AdvancAuth\REPOSITORY\obj\Debug\net6.0\REPOSITORY.pdb
 D:\Dev\AdvancAuth\REPOSITORY\obj\Debug\net6.0\ref\REPOSITORY.dll
-D:\MyGitHub\AdvancAuth\REPOSITORY\obj\Debug\net6.0\REPOSITORY.sourcelink.json

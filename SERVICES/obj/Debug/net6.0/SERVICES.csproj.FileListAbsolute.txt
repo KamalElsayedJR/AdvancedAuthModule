@@ -49,4 +49,3 @@ D:\Dev\AdvancAuth\SERVICES\obj\Debug\net6.0\SERVICES.dll
 D:\Dev\AdvancAuth\SERVICES\obj\Debug\net6.0\refint\SERVICES.dll
 D:\Dev\AdvancAuth\SERVICES\obj\Debug\net6.0\SERVICES.pdb
 D:\Dev\AdvancAuth\SERVICES\obj\Debug\net6.0\ref\SERVICES.dll
-D:\MyGitHub\AdvancAuth\SERVICES\obj\Debug\net6.0\SERVICES.sourcelink.json

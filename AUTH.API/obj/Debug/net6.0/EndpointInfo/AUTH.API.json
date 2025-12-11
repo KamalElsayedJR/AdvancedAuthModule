@@ -554,6 +554,13 @@
             "type": "boolean",
             "nullable": true
           },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -584,6 +591,7 @@
           },
           "password": {
             "minLength": 1,
+            "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._-])[A-Za-z\\d@$!%*?&._-]{8,}$",
             "type": "string"
           },
           "confirmPassword": {
@@ -639,6 +647,7 @@
             "nullable": true
           },
           "newPassword": {
+            "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._-])[A-Za-z\\d@$!%*?&._-]{8,}$",
             "type": "string",
             "nullable": true
           }
@@ -691,6 +700,13 @@
           "verified": {
             "type": "string",
             "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -720,7 +736,8 @@
           "email",
           "firstName",
           "lastName",
-          "password"
+          "password",
+          "role"
         ],
         "type": "object",
         "properties": {
@@ -739,8 +756,13 @@
           },
           "password": {
             "minLength": 8,
+            "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._-])[A-Za-z\\d@$!%*?&._-]{8,}$",
             "type": "string",
             "format": "password"
+          },
+          "role": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false

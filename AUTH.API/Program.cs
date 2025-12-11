@@ -1,10 +1,15 @@
 using AUTH.API.Extentions;
 using CORE.DTOs;
+using CORE.Entities;
+using CORE.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using REPOSITORY.Data;
+using System.Threading.Tasks;
 namespace AUTH.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +25,24 @@ namespace AUTH.API
             builder.Services.AddServices();
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
+
+            using var app = builder.Build();
+            var scope = app.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var DbContext = services.GetRequiredService<IdentityDbContext>();
+                await DbContext.Database.MigrateAsync();
+                await IdentityDataSeed.SeedDataAsync(DbContext);
+            }
+            catch (Exception ex)
+            {
+                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                var Logger = loggerFactory.CreateLogger<Program>();
+                Logger.LogError(ex.Message);
+            }
+
             #endregion
-            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

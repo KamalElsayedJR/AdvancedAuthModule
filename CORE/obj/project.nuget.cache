@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gpp3yWcakzI=",
+  "dgSpecHash": "HeZcXw8mWwU=",
   "success": true,
-  "projectFilePath": "D:\\MyGitHub\\AdvancAuth\\CORE\\CORE.csproj",
+  "projectFilePath": "D:\\Dev\\AdvancAuth\\CORE\\CORE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kamal\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\kamal\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

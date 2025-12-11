@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CORE.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +15,14 @@ namespace CORE.DTOs
         public string? LastName { get; set; }
         public string? Email { get; set; }
         public bool? IsVerified { get; set; }
+        public List<string>? Roles { get; set; } = new List<string>();
         public DateTimeOffset? CreatedAt { get; set; }
         public string? AccessToken { get; set; }
         public string? RefreshToken { get; set; }
         public AuthBaseResponseDto()
         {
         }
-        public AuthBaseResponseDto(bool success, string message, string? id, string? firstName, string? lastName, string? email, bool? isVerified, DateTimeOffset? createdAt, string? accessToken, string? refreshToken)
+        public AuthBaseResponseDto(bool success, string message, string? id, string? firstName, string? lastName, string? email, bool? isVerified,List<string> roles, DateTimeOffset? createdAt, string? accessToken, string? refreshToken)
         {
             Success = success;
             Message = message;
@@ -29,6 +31,7 @@ namespace CORE.DTOs
             LastName = lastName;
             Email = email;
             IsVerified = isVerified;
+            Roles = roles;
             CreatedAt = createdAt;
             AccessToken = accessToken;
             RefreshToken = refreshToken;

@@ -11,7 +11,7 @@ namespace AUTH.API.Extentions
         {
 
             #region Services
-            Services.AddSingleton<ITokenService, TokenService>();
+            Services.AddScoped<ITokenService, TokenService>();
             Services.AddScoped<IAuthService, AuthService>();
             Services.AddTransient<IEmailService, EmailService>();
             Services.AddTransient<IEmailVerificationService,EmailVerificationService>();
@@ -22,6 +22,7 @@ namespace AUTH.API.Extentions
             #region Repositories
             Services.AddScoped<IUserRepository, UserRepository>();
             Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            Services.AddScoped<IRolesRepository, RoleRepository>();
             #endregion
 
             return Services;

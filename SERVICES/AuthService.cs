@@ -36,6 +36,13 @@ namespace SERVICES
             var MappedUser = _mapper.Map<UserRegisterDto, User>(dto);
             MappedUser.HashPassword = HashPassowrdHandler(dto.Password);
             await _unitOfWork.GenericRepo<User>().AddAsync(MappedUser);
+            var userrole = _unitOfWork.IRolesRepository.GetRoleidByName(dto.Role);
+            if (userrole is null || dto.Role == "admin") return new AuthBaseResponseDto(false,"This Role Not Exist");
+            await _unitOfWork.GenericRepo<UserRoles>().AddAsync(new UserRoles()
+            {
+                UserId = MappedUser.Id,
+                RoleId = userrole // Default Role as User
+            });
             var Result = await _unitOfWork.SaveChangesAsync();
             if (Result <= 0) return new AuthBaseResponseDto(false, "Errors During User Registration");
 
@@ -72,6 +79,11 @@ namespace SERVICES
             var Result = await _unitOfWork.SaveChangesAsync();
             if(Result <= 0) return new AuthBaseResponseDto(false, "Errors During Login");
             var ReturnedResponse = _mapper.Map<User, AuthBaseResponseDto>(User);
+            var userRoles = _unitOfWork.IRolesRepository.GetRoleForUser(User.Id).ToList();
+            foreach (var role in userRoles)
+            {
+                ReturnedResponse.Roles?.Add(role.Role.Role);
+            }
             ReturnedResponse.Success = true;
             ReturnedResponse.Message = "Login Success";
             ReturnedResponse.AccessToken = accessToken;

@@ -21,5 +21,8 @@ namespace REPOSITORY.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<OTP> OTPs { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<UserRoles> UserRoles { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace CORE.Interfaces
     {
         Task<string> CreateAccessTokenAsync(User user);
         string CreateRefreshToken();
-
+        ClaimsPrincipal GetUserPrincipal(string token);
     }
 }

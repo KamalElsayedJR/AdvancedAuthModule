@@ -16,11 +16,13 @@ namespace REPOSITORY.Repsitories
         private Hashtable _repo = new Hashtable();
 
         public IUserRepository IUserRepository { get; }
+        public IRolesRepository IRolesRepository { get;}
 
-        public UnitOfWork(IdentityDbContext dbContext, IUserRepository userRepository)
+        public UnitOfWork(IdentityDbContext dbContext, IUserRepository userRepository,IRolesRepository rolesRepository)
         {
             _dbContext = dbContext;
             IUserRepository = userRepository;
+            IRolesRepository = rolesRepository;
         }
         public async ValueTask DisposeAsync()
         => await _dbContext.DisposeAsync();

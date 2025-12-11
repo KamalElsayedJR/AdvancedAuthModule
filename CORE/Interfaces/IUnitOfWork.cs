@@ -12,5 +12,6 @@ namespace CORE.Interfaces
         Task<int> SaveChangesAsync();
         IGenericRepository<T> GenericRepo<T>() where T : class;
         public IUserRepository IUserRepository { get; }
+        public IRolesRepository IRolesRepository { get; }
     }
 }

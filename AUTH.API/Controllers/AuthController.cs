@@ -93,7 +93,8 @@ namespace AUTH.API.Controllers
             { 
                 Email = Email,
                 DisplayName = User.Claims.FirstOrDefault(C => C.Type.ToString() == "DisplayName")?.Value,
-                Verified = User.Claims.FirstOrDefault(C => C.Type.ToString() == "EmailVerifiy")?.Value
+                Verified = User.Claims.FirstOrDefault(C => C.Type.ToString() == "EmailVerifiy")?.Value,
+                Roles = (List<string>) User.Claims.Where(C => C.Type.ToString() == ClaimTypes.Role)
             };
         }
         [Authorize]
@@ -126,7 +127,21 @@ namespace AUTH.API.Controllers
             if (responseResult) return Ok(true);
             return BadRequest(false);
         }
+        [Authorize]
+        [HttpGet("gettoken")]
+        public IActionResult GetMyToken()
+        {
+            // ناخد الهيدر
+            var authHeader = HttpContext.Request.Headers["Authorization"].ToString();
 
+            if (string.IsNullOrEmpty(authHeader))
+                return BadRequest("No Authorization header found");
+
+            // التوكن عادة بييجي بالشكل "Bearer <token>"
+            var token = authHeader.StartsWith("Bearer ") ? authHeader["Bearer ".Length..] : authHeader;
+
+            return Ok(new { token });
+        }
 
     }
 }

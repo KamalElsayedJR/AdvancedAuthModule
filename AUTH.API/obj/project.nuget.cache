@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lHMC/u+OFz8=",
+  "dgSpecHash": "zCi572BmKeI=",
   "success": true,
-  "projectFilePath": "D:\\MyGitHub\\AdvancAuth\\AUTH.API\\AUTH.API.csproj",
+  "projectFilePath": "D:\\Dev\\AdvancAuth\\AUTH.API\\AUTH.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kamal\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\kamal\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
